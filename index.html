@@ -9,61 +9,93 @@
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f0f2f5;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 16px}
 h1{font-size:1.5rem;color:#1a1a1a;margin-bottom:6px}
 .sub{font-size:.85rem;color:#65676b;margin-bottom:28px}
-.drop-zone{width:100%;max-width:560px;border:2px dashed #bdc3d4;border-radius:16px;padding:56px 24px;text-align:center;cursor:pointer;transition:.2s;background:#fff;margin-bottom:16px;position:relative}
-.drop-zone:hover,.drop-zone.drag{background:#f7f9ff;border-color:#4263eb;box-shadow:0 0 0 3px rgba(66,99,235,.1)}
+.drop-zone{width:100%;max-width:560px;border:2px dashed #bdc3d4;border-radius:16px;padding:56px 24px;text-align:center;cursor:pointer;transition:.2s;background:#fff;margin-bottom:16px}
+.drop-zone:hover,.drop-zone.drag{background:#f7f9ff;border-color:#4263eb}
 .drop-icon{font-size:3rem;margin-bottom:14px}
 .drop-zone p{color:#4a5568;font-size:.95rem}
 .drop-zone .sub2{font-size:.8rem;color:#a0aec0;margin-top:4px}
 .drop-zone input{display:none}
-.grid{display:flex;flex-wrap:wrap;gap:10px;width:100%;max-width:560px;margin-bottom:16px}
-.thumb{position:relative;width:108px;height:108px;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08);background:#e8eaed;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.grid{display:flex;flex-wrap:wrap;gap:10px;width:100%;max-width:560px;margin-bottom:16px;min-height:50px}
+.thumb{position:relative;width:108px;height:108px;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08);background:#e8eaed;flex-shrink:0}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.thumb .del{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.55);color:#fff;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:14px;line-height:22px;text-align:center;display:none}
+.thumb .del{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.55);color:#fff;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:14px;line-height:22px;display:none}
 .thumb:hover .del{display:block}
-.thumb .name{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.45);color:#fff;font-size:.62rem;padding:2px 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.result{width:100%;max-width:560px;background:#fff;border:1px solid #e1e4e8;border-radius:12px;padding:16px 20px;margin-bottom:12px}
+.thumb .name{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.45);color:#fff;font-size:.62rem;padding:2px 5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.result{width:100%;max-width:560px;background:#fff;border:1px solid #e1e4e8;border-radius:12px;padding:16px 20px;margin-bottom:12px;display:none}
 .result-label{font-size:.75rem;color:#8b949e;margin-bottom:6px}
-.result-row{display:flex;gap:10px;align-items:center}
-.result input{flex:1;border:none;outline:none;font-size:.82rem;font-family:"SF Mono",Monaco,monospace;background:transparent;color:#24292f}
-.result button{background:#f6f8fa;border:1px solid #d0d7de;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:.82rem;color:#24292f;white-space:nowrap;transition:.15s}
-.result button:hover{background:#f3f4f6;border-color:#d0d7de}
-.log{width:100%;max-width:560px;background:#161b22;color:#e6edf3;border:1px solid #30363d;border-radius:10px;padding:14px;font-size:.78rem;max-height:160px;overflow-y:auto;font-family:"SF Mono",Monaco,monospace;white-space:pre-wrap;word-break:break-all;margin-bottom:12px;display:none}
+.result input{width:100%;border:none;outline:none;font-size:.82rem;font-family:monospace;background:transparent;color:#24292f;margin-bottom:4px}
+.result .actions{display:flex;gap:6px}
+.result button{background:#f6f8fa;border:1px solid #d0d7de;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:.82rem;color:#24292f;transition:.15s}
+.result button:hover{background:#f3f4f6}
+.result button:active{background:#e8eaed}
+.log{width:100%;max-width:560px;background:#161b22;color:#e6edf3;border:1px solid #30363d;border-radius:10px;padding:14px;font-size:.78rem;max-height:200px;overflow-y:auto;font-family:monospace;white-space:pre-wrap;word-break:break-all;margin-bottom:12px;display:none}
+.toolbar{width:100%;max-width:560px;display:flex;gap:6px;margin-bottom:12px}
+.toolbar .btn{flex:1;background:#0969da;color:#fff;border:none;padding:12px;border-radius:10px;cursor:pointer;font-size:.9rem;font-weight:600;transition:.15s}
+.toolbar .btn:hover{background:#0860c7}
+.toolbar .btn:disabled{background:#8c959f;cursor:not-allowed}
+.toolbar .btn-danger{background:#cf222e}
+.toolbar .btn-danger:hover{background:#a81c26}
+.toolbar .btn-outline{background:transparent;color:#0969da;border:1px solid #0969da}
+.toolbar .btn-outline:hover{background:#ddf4ff}
+.token-bar{width:100%;max-width:560px;background:#fff3cd;border:1px solid #ffc107;border-radius:10px;padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;gap:8px;font-size:.82rem;color:#856404}
+.token-bar input{flex:1;border:1px solid #ccc;padding:6px 10px;border-radius:6px;font-size:.78rem;font-family:monospace;background:#fff}
+.token-bar button{background:#0969da;color:#fff;border:none;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:.78rem;white-space:nowrap}
+.token-bar button:hover{background:#0860c7}
+.loading-bar{width:100%;max-width:560px;height:4px;background:#e8eaed;border-radius:2px;margin-bottom:8px;overflow:hidden;display:none}
+.loading-bar .fill{height:100%;width:0%;background:linear-gradient(90deg,#0969da,#6f42c1);border-radius:2px;transition:width .3s}
 .footer{color:#8b949e;font-size:.75rem;margin-top:20px;text-align:center}
 .footer a{color:#4263eb;text-decoration:none}
 </style>
 </head>
 <body>
 <h1>📷 图片上传</h1>
-<p class="sub">GitHub 存储 · Cloudflare 全球加速 · 永久免费</p>
+<p class="sub">GitHub 直存 · 永久免费 · 无广告</p>
+
+<div class="token-bar" id="tokenBar">
+  <span>🔑</span>
+  <input type="password" id="tokenInput" placeholder="粘贴 GitHub Token...">
+  <button id="tokenSaveBtn">保存</button>
+</div>
 
 <div class="drop-zone" id="drop">
   <div class="drop-icon">📤</div>
-  <p>点击或拖拽图片到这里</p>
+  <p>点击或拖拽图片到此处</p>
   <p class="sub2">支持 jpg, png, gif, webp · 最大 5MB</p>
   <input type="file" id="fileInput" multiple accept="image/*">
 </div>
 
+<div class="toolbar">
+  <button class="btn" id="uploadBtn" disabled>⬆ 开始上传</button>
+  <button class="btn btn-danger" id="clearBtn" disabled>🗑 清空</button>
+  <button class="btn btn-outline" id="copyAllBtn" style="display:none">📋 复制全部</button>
+</div>
+
+<div class="loading-bar" id="loadingBar"><div class="fill" id="loadingFill"></div></div>
 <div class="grid" id="grid"></div>
 
-<div class="result" id="resultBox" style="display:none">
-  <div class="result-label">📎 图片链接（点击复制）</div>
-  <div class="result-row">
-    <input type="text" id="resultUrl" readonly>
-    <button id="copyBtn">复制</button>
+<div class="result" id="resultBox">
+  <div class="result-label">📎 CDN 链接</div>
+  <input type="text" id="resultUrl" readonly>
+  <div class="actions">
+    <button id="copyBtn">📋 复制</button>
+    <button id="openBtn">🌐 打开</button>
   </div>
 </div>
 
 <div class="log" id="logBox"></div>
 
 <div class="footer">
-  存储于 GitHub · <a href="https://cdn.jsdelivr.net/gh/tupaopao/img-host/uploads/" target="_blank">查看全部图片</a>
+  图片存储在 <a href="https://github.com/tupaopao/img-host" target="_blank">tupaopao/img-host</a> ·
+  CDN 由 <a href="https://cdn.jsdelivr.net" target="_blank">jsDelivr</a> 加速
 </div>
 
 <script>
 // ====== CONFIG ======
-const WORKER_URL = "https://img-upload.szbb2026.workers.dev";
-// Upload CDN base (jsDelivr auto-refreshes)
-const CDN = "https://cdn.jsdelivr.net/gh/tupaopao/img-host/uploads/";
+const OWNER = "tupaopao";
+const REPO = "img-host";
+const BRANCH = "main";
+const BASE = "https://cdn.jsdelivr.net/gh/tupaopao/img-host/uploads/";
+const LS_KEY = "img_host_gh_token";
 
 // ====== DOM ======
 const drop = document.getElementById("drop");
@@ -72,23 +104,59 @@ const grid = document.getElementById("grid");
 const resultBox = document.getElementById("resultBox");
 const resultUrl = document.getElementById("resultUrl");
 const copyBtn = document.getElementById("copyBtn");
+const openBtn = document.getElementById("openBtn");
+const copyAllBtn = document.getElementById("copyAllBtn");
 const logBox = document.getElementById("logBox");
+const uploadBtn = document.getElementById("uploadBtn");
+const clearBtn = document.getElementById("clearBtn");
+const tokenInput = document.getElementById("tokenInput");
+const tokenSaveBtn = document.getElementById("tokenSaveBtn");
+const tokenBar = document.getElementById("tokenBar");
+const loadingBar = document.getElementById("loadingBar");
+const loadingFill = document.getElementById("loadingFill");
 
 let files = [];
 let uploaded = [];
+let uploading = false;
 
+// ====== TOKEN ======
+function loadToken() {
+  const t = localStorage.getItem(LS_KEY);
+  if (t) { tokenBar.style.display = "none"; return t; }
+  tokenBar.style.display = "flex";
+  return null;
+}
+
+tokenSaveBtn.addEventListener("click", () => {
+  const t = tokenInput.value.trim();
+  if (t && t.startsWith("ghp_")) {
+    localStorage.setItem(LS_KEY, t);
+    tokenBar.style.display = "none";
+    log("🔑 Token 已保存");
+  } else {
+    alert("请输入有效的 GitHub Token（以 ghp_ 开头）");
+  }
+});
+
+let GH_TOKEN = loadToken();
+
+// ====== HELPERS ======
 function log(msg) {
   logBox.style.display = "block";
   logBox.textContent = (logBox.textContent ? logBox.textContent + "\n" : "") + msg;
   logBox.scrollTop = logBox.scrollHeight;
 }
 
-function showResult(url) {
-  resultUrl.value = url;
-  resultBox.style.display = "block";
+function setStatus(msg) {
+  document.querySelector(".sub").textContent = msg || "GitHub 直存 · 永久免费 · 无广告";
 }
 
-// ====== DRAG & DROP ======
+function setProgress(pct) {
+  loadingBar.style.display = "block";
+  loadingFill.style.width = pct + "%";
+}
+
+// ====== FILE HANDLING ======
 drop.addEventListener("click", () => fileInput.click());
 drop.addEventListener("dragover", e => { e.preventDefault(); drop.classList.add("drag"); });
 drop.addEventListener("dragleave", () => drop.classList.remove("drag"));
@@ -96,10 +164,15 @@ drop.addEventListener("drop", e => { e.preventDefault(); drop.classList.remove("
 fileInput.addEventListener("change", () => addFiles(Array.from(fileInput.files)));
 
 function addFiles(list) {
+  GH_TOKEN = loadToken();
+  if (!GH_TOKEN) { alert("请先设置 Token"); return; }
+  if (uploading) return;
   const valid = list.filter(f => f.size <= 5 * 1024 * 1024 && f.type.startsWith("image/"));
   if (valid.length < list.length) alert("部分文件不是图片或超过 5MB，已跳过");
   files = files.concat(valid);
   render();
+  uploadBtn.disabled = files.length === 0;
+  clearBtn.disabled = files.length === 0;
 }
 
 function render() {
@@ -109,82 +182,115 @@ function render() {
     div.className = "thumb";
     const img = document.createElement("img");
     img.src = URL.createObjectURL(f);
-    img.onload = () => URL.revokeObjectURL(img.src);
     const del = document.createElement("button");
-    del.className = "del";
-    del.textContent = "×";
-    del.onclick = e => { e.stopPropagation(); files.splice(i, 1); render(); };
+    del.className = "del"; del.textContent = "×";
+    del.onclick = e => { e.stopPropagation(); files.splice(i, 1); render(); uploadBtn.disabled = files.length === 0; clearBtn.disabled = files.length === 0; };
     const name = document.createElement("div");
-    name.className = "name";
-    name.textContent = f.name;
+    name.className = "name"; name.textContent = f.name;
     div.append(img, del, name);
     grid.appendChild(div);
   });
+  setStatus(files.length ? `${files.length} 张待上传` : "");
+}
+
+clearBtn.addEventListener("click", () => { files = []; uploaded = []; render(); uploadBtn.disabled = true; clearBtn.disabled = true; copyAllBtn.style.display = "none"; resultBox.style.display = "none"; });
+
+// ====== GITHUB API ======
+async function getFileSHA(path) {
+  try {
+    const r = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}?ref=${BRANCH}`, {
+      headers: { "Authorization": `token ${GH_TOKEN}`, "Accept": "application/vnd.github.v3+json" }
+    });
+    if (r.ok) { const d = await r.json(); return d.sha; }
+  } catch(e) {}
+  return null;
+}
+
+async function uploadToGitHub(filename, base64Data) {
+  const path = `uploads/${filename}`;
+  const sha = await getFileSHA(path);
+  const payload = { message: `Upload ${filename}`, content: base64Data };
+  if (sha) payload.sha = sha;
+  const r = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}`, {
+    method: "PUT",
+    headers: { "Authorization": `token ${GH_TOKEN}`, "Content-Type": "application/json", "Accept": "application/vnd.github.v3+json" }
+  });
+  const result = await r.json();
+  if (!r.ok) throw new Error(result.message || `HTTP ${r.status}`);
+  return BASE + filename;
 }
 
 // ====== UPLOAD ======
-async function uploadAll() {
-  if (!files.length) return;
-  log(`⬆ 开始上传 ${files.length} 张图…`);
-
-  for (const f of files) {
+uploadBtn.addEventListener("click", async () => {
+  GH_TOKEN = loadToken();
+  if (!GH_TOKEN) { alert("请先设置 Token"); return; }
+  if (uploading || !files.length) return;
+  
+  uploading = true;
+  uploadBtn.disabled = true;
+  uploadBtn.textContent = "⏳ 上传中…";
+  clearBtn.disabled = true;
+  uploaded = [];
+  
+  for (let i = 0; i < files.length; i++) {
+    const f = files[i];
     try {
+      setStatus(`⏳ (${i+1}/${files.length}) ${f.name}`);
+      setProgress((i / files.length) * 100);
+      
       const base64 = await new Promise((res, rej) => {
         const reader = new FileReader();
         reader.onload = () => res(reader.result.split(",")[1]);
         reader.onerror = rej;
         reader.readAsDataURL(f);
       });
-
-      const ext = f.name.split(".").pop() || "jpg";
+      
+      const safe = f.name.replace(/[^a-zA-Z0-9._-]/g, "_");
       const ts = Date.now();
       const rand = Math.random().toString(36).substr(2, 5);
-      const safeName = f.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-      const filename = `${ts}_${rand}_${safeName}`;
-
-      log(`  上传中: ${f.name}`);
-      const resp = await fetch(`${WORKER_URL}/upload`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ filename, base64 })
-      });
-
-      const data = await resp.json();
-      if (!data.success) throw new Error(data.error || "上传失败");
-
-      const cdnUrl = CDN + filename;
-      log(`  ✅ ${cdnUrl}`);
-      uploaded.push(cdnUrl);
+      const filename = `${ts}_${rand}_${safe}`;
+      
+      log(`⬆ ${f.name}`);
+      const url = await uploadToGitHub(filename, base64);
+      log(`✅ ${url}`);
+      uploaded.push(url);
+      
+      resultUrl.value = url;
+      resultBox.style.display = "block";
     } catch (e) {
-      log(`  ❌ ${f.name}: ${e.message}`);
+      log(`❌ ${f.name}: ${e.message}`);
     }
   }
-
-  if (uploaded.length) {
-    showResult(uploaded[uploaded.length - 1]);
-    log(`\n✅ 完成！共上传 ${uploaded.length} 张图`);
-    files = [];
-    render();
-  }
-}
-
-// ====== COPY ======
-resultUrl.addEventListener("click", () => {
-  resultUrl.select();
+  
+  setProgress(100);
+  const cnt = uploaded.length;
+  setStatus(`✅ ${cnt}/${files.length} 张上传成功`);
+  uploadBtn.textContent = "⬆ 开始上传";
+  uploadBtn.disabled = false;
+  clearBtn.disabled = false;
+  uploading = false;
+  files = [];
+  render();
+  if (cnt > 1) copyAllBtn.style.display = "inline-block";
+  setTimeout(() => { loadingBar.style.display = "none"; }, 2000);
 });
+
+// ====== COPY & OPEN ======
 copyBtn.addEventListener("click", () => {
   navigator.clipboard.writeText(resultUrl.value).then(() => {
-    copyBtn.textContent = "已复制!";
-    setTimeout(() => copyBtn.textContent = "复制", 1800);
+    copyBtn.textContent = "✅ 已复制";
+    setTimeout(() => copyBtn.textContent = "📋 复制", 2000);
   });
 });
+openBtn.addEventListener("click", () => window.open(resultUrl.value, "_blank"));
+resultUrl.addEventListener("click", () => resultUrl.select());
 
-// ====== AUTO UPLOAD ON DROP ======
-drop.addEventListener("drop", () => {
-  setTimeout(uploadAll, 100);
-});
-fileInput.addEventListener("change", () => {
-  setTimeout(uploadAll, 100);
+copyAllBtn.addEventListener("click", () => {
+  const all = uploaded.join("\n");
+  navigator.clipboard.writeText(all).then(() => {
+    copyAllBtn.textContent = "✅ 已复制全部";
+    setTimeout(() => copyAllBtn.textContent = "📋 复制全部", 2000);
+  });
 });
 </script>
 </body>
