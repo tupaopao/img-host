@@ -213,7 +213,8 @@ async function uploadToGitHub(filename, base64Data) {
   if (sha) payload.sha = sha;
   const r = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}`, {
     method: "PUT",
-    headers: { "Authorization": `token ${GH_TOKEN}`, "Content-Type": "application/json", "Accept": "application/vnd.github.v3+json" }
+    headers: { "Authorization": `token ${GH_TOKEN}`, "Content-Type": "application/json", "Accept": "application/vnd.github.v3+json" },
+    body: JSON.stringify(payload)
   });
   const result = await r.json();
   if (!r.ok) throw new Error(result.message || `HTTP ${r.status}`);
